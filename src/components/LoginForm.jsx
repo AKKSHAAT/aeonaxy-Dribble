@@ -1,8 +1,20 @@
-import React from "react";
+import React, {useState}from "react";
 
 // TODO:add check box validation
 
 export const LoginForm = () => {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'email') {
+      setEmail(value);
+    } else if (name === 'password') {
+      setPassword(value);
+    } 
+  }
 
   
   return (
@@ -21,6 +33,8 @@ export const LoginForm = () => {
                 id="email"
                 name="email"
                 type="email"
+                value={email}
+                onChange={handleChange}
                 autoComplete="email"
                 required
                 className="input-base bg-inputBg-100 p-3  mb-6 w-full rounded-md"
@@ -34,8 +48,10 @@ export const LoginForm = () => {
               <input
                 id="password"
                 name="password"
+                onChange={handleChange}
                 type="password"
                 autoComplete="current-password"
+                value={password}
                 required={true}
                 className="input-base bg-inputBg-100 p-3  mb-6 w-full rounded-md "
                 placeholder="Password"
