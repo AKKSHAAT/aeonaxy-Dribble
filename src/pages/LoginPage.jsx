@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
-import { SignUpForm } from './SignUpForm';
-import { Logo } from './Logo';
+import { SignUpForm } from '../components/SignUpForm';
+import {LoginForm} from '../components/LoginForm'
+import { Logo } from '../components/Logo';
 
 
 const LoginPage = () => {
@@ -35,12 +36,18 @@ const LoginPage = () => {
         />
       </div>
 
-      <p className='absolute top-10 right-20'>Already a member? 
-      <span onClick={handleLogin} className='text-blue-700 cursor-pointer'> Sign in</span>
+      <p className='absolute top-10 right-20'>{showLogin ? "Not a Member? " : "Alredy a Member? "}
+      <span onClick={handleLogin} className='text-blue-700 cursor-pointer'> {showLogin ? "Sign Up" : "Sign In"}</span>
       </p>
       
       <div className='mx-auto  px-6 md:p-0'>
-        <SignUpForm />
+      {showLogin ? (
+        <LoginForm /> ) : (
+          
+          <SignUpForm /> 
+        )
+
+      }
       </div>
     </div>
   );
