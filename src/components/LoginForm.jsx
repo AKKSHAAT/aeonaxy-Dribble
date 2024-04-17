@@ -21,9 +21,9 @@ export const LoginForm = () => {
     <div className="max-w-1/2">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign up to Dribbble</h2>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign In</h2>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form className="mt-8 space-y-6 w-96 " action="#" method="POST">
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <label htmlFor="Email" className="font-bold block mb-1">

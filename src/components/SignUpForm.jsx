@@ -1,6 +1,7 @@
 import React, {useReducer} from "react";
 
 // TODO:add check box validation
+// TODO:add username check w debouncing
 
 const initialState = {
   name: '',

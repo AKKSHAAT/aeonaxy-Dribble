@@ -4,9 +4,9 @@ import {LoginForm} from '../components/LoginForm'
 import { Logo } from '../components/Logo';
 
 
-const LoginPage = () => {
+const LoginPage = ({login}) => {
   
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState(login || false);
   
   
   function handleLogin() {
@@ -28,7 +28,7 @@ const LoginPage = () => {
       </div>
 
       {/* image */}
-      <div className="w-1/3 h-screen flex items-center justify-start">
+      <div className="w-1/3 h-screen flex items-center justify-start hidden md:block">
         <img
           className='w-full h-full object-cover'
           src={process.env.PUBLIC_URL + '/images/login_photo.png'}
