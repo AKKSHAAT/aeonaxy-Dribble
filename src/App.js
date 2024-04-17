@@ -1,9 +1,10 @@
-import { faHouse } from '@fortawesome/free-solid-svg-icons';
+import LoginPage from './components/LoginPage';
 
 
 function App() {
   return (
-    <div>
+    <div >
+    <LoginPage />
     </div>
   );
 }
