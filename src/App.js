@@ -1,12 +1,12 @@
-import DemoComponent from "./DemoComponent";
+import { faHouse } from '@fortawesome/free-solid-svg-icons';
 
 
 function App() {
   return (
     <div>
-   <DemoComponent />
     </div>
   );
 }
+
 
 export default App;
