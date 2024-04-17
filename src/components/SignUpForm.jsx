@@ -1,8 +1,38 @@
-import React from "react";
+import React, {useReducer} from "react";
 
 // TODO:add check box validation
 
+const initialState = {
+  name: '',
+  email: '',
+  username: '',
+  password: ''
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'SET_NAME':
+      return { ...state, name: action.payload };
+    case 'SET_EMAIL':
+      return { ...state, email: action.payload };
+    case 'SET_USERNAME':
+      return { ...state, username: action.payload };
+    case 'SET_PASSWORD':
+      return { ...state, password: action.payload };
+    default:
+      return state;
+  }
+};
+
 export const SignUpForm = () => {
+  
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const handleChange = (e) => {
+    console.log(state.name)
+    const { name, value } = e.target;
+    dispatch({ type: `SET_${name.toUpperCase()}`, payload: value });
+  };
 
   
   return (
@@ -19,6 +49,7 @@ export const SignUpForm = () => {
                   Name
                 </label>
                 <input
+                  onChange={handleChange}
                   id="name"
                   name="name"
                   type="text"
@@ -33,6 +64,7 @@ export const SignUpForm = () => {
                   Username
                 </label>
                 <input
+                  onChange={handleChange}
                   id="username"
                   name="username"
                   type="text"
@@ -48,6 +80,7 @@ export const SignUpForm = () => {
                 Email
               </label>
               <input
+                onChange={handleChange}
                 id="email"
                 name="email"
                 type="email"
@@ -62,6 +95,7 @@ export const SignUpForm = () => {
                 Password
               </label>
               <input
+                onChange={handleChange}
                 id="password"
                 name="password"
                 type="password"
