@@ -8,6 +8,9 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
 export const WelcomePage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [location, setLoaction] = useState('');
+
+  const [isReady, setIsReady] = useState(false);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -15,10 +18,22 @@ export const WelcomePage = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setSelectedImage(reader.result);
+        setIsReady(location.trim() !== '' && reader.result !== null);
       };
       reader.readAsDataURL(file);
     }
   };
+
+  const takeNext = ()=>{
+    console.log("going next")
+  }
+
+  const handleLocation = (e)=> {
+    const value = e.target.value;
+    setLoaction(value);
+    console.log(location);
+    setIsReady(value.trim() !== '' && selectedImage !== null);
+  }
 
   return (
     <>
@@ -55,7 +70,7 @@ export const WelcomePage = () => {
               </div>
 
               <section className="px-4 md:px-12 sm:mx-auto text-center md:text-left">
-                <span className="w-40 mb-2 border-slate-200 border-solid border-2 rounded-md font-bold h-10 p-2  block justify-center mx-auto items-center">
+                <span className="w-40 mb-2 border-slate-200 border-solid border-2 rounded-md font-bold h-10 flex block justify-center mx-auto items-center">
                   choose image
                 </span>
                 <a 
@@ -86,10 +101,21 @@ export const WelcomePage = () => {
             id="location"
             name="location"
             type="text"
+            onChange={handleLocation}
+            value={location}
+            
             required
             className="input-base bg-inputBg-100 w-full p-3 mb-6 rounded-md "
             placeholder="Location"
           />
+          <button 
+            className={`bg-dribblePink px-20 py-2 rounded-lg text-white font-bold ${!isReady && 'opacity-50'}`}
+            disabled={!isReady}
+            onClick={takeNext}
+          >
+            next
+          </button>
+
         </div>
       </div>
     </>
