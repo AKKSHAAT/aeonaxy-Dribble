@@ -54,7 +54,7 @@ export const WelcomePage = () => {
           {/* ---------------------------------img section----------------------- */}
           <div className="mb-8">
             <label htmlFor="avatar" className="cursor-pointer md:flex  ">
-              {/* renders icon or selected img */}
+              {/* will renders icon or selected img */}
               <div className="mx-auto max-w-xs mb-8 md:mb-0">
                 <div className="text-slate-400 w-52 h-52 rounded-full flex items-center justify-center border-slate-200 border-4 mx-auto border-dashed">
                   {selectedImage ? (

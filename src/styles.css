@@ -2,3 +2,55 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+
+/* Custom styles for rounded checkboxes */
+input[type="checkbox"].form-checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 50%;
+    border: 2px solid #e5e7eb;
+    width: 24px;
+    height: 24px;
+    outline: none;
+    transition: background-color 0.2s, border-color 0.2s;
+    margin-right: 0.5rem;
+    position: relative; /* Add relative positioning */
+  }
+  
+  /* Style the checkmark */
+  input[type="checkbox"].form-checkbox::after {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg); /* Rotate the checkmark to 45 degrees */
+    position: absolute;
+    top: 50%; /* Position the checkmark vertically centered */
+    left: 50%; /* Position the checkmark horizontally centered */
+    transform-origin: center; /* Set the transform origin to the center */
+    margin-top: -5px; /* Adjust the top margin to center vertically */
+    margin-left: -3px; /* Adjust the left margin to center horizontally */
+    opacity: 0; /* Hide the checkmark by default */
+    transition: opacity 0.2s;
+  }
+  
+  /* Show the checkmark when checked */
+  input[type="checkbox"].form-checkbox:checked::after {
+    opacity: 1; /* Show the checkmark when checked */
+  }
+  
+  /* Change the checkbox background and border color when checked */
+  input[type="checkbox"].form-checkbox:checked {
+    background-color: #ea4b8b; /* Change the checked background color */
+    border-color: #d1d5db; /* Change the checked border color */
+  }
+  
+  /* Hide the default checkmark */
+  input[type="checkbox"].form-checkbox:checked {
+    color: transparent;
+  }
+  
