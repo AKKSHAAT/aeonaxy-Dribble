@@ -117,14 +117,14 @@ export const SignUpForm = () => {
               />
               <label htmlFor="terms" className="ml-2 block text-sm text-gray-900">
                 Creating an account means you're okay with our {" "}
-                <a href="#" className="text-indigo-600 hover:text-indigo-500">
+                <a href="https://dribbble.com/terms" className="text-indigo-600 hover:text-indigo-500">
                   Terms of Service,
                 </a>{" "}
-                <a href="#" className="text-indigo-600 hover:text-indigo-500">
+                <a href="https://dribbble.com/privacy" className="text-indigo-600 hover:text-indigo-500">
                   Privacy Policy
                 </a>
                 and{" "}
-                <a href="#" className="text-indigo-600 hover:text-indigo-500">
+                <a href="https://dribbble.com/notifications" className="text-indigo-600 hover:text-indigo-500">
                   our default Notification Settings 
                 </a>
               </label>

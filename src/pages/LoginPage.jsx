@@ -32,7 +32,7 @@ const LoginPage = ({login}) => {
         <img
           className='w-full h-full object-cover'
           src={process.env.PUBLIC_URL + '/images/login_photo.png'}
-          alt="Login Photo"
+          alt="someting"
         />
       </div>
 
