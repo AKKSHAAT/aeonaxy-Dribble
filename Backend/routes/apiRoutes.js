@@ -1,8 +1,10 @@
-import express from "express";
+import express, { response } from "express";
 import {User} from "../model/userModel.js";
 import multer from 'multer';
 import path  from 'path';
-import fs  from 'fs';
+
+import cloudinary from '../utils/cloudinary.js';
+const image = '../uploads/1713558479561.jpg';
 
 const router = express.Router();
 
@@ -43,17 +45,41 @@ router.post("/create-user", async (req, res)=> {
 });
 
 router.post('/upload-avatar', upload.single('avatar'), (req, res) => {
-    const file = req.file;
 
-    console.log(file);
+    cloudinary.uploader.upload(req.file.path, (err, result)=>{
+        if(err) {
+            console.log(err);
+            return res.status(500).json({
+                success:false,
+                messege:"Error"
+            })
+        }
+
+        //TODO:fetch user email and add this to profile img url
+        console.log(result.secure_url);
+        res.status(200).json({
+            success: true,
+            messege: "Uploaded!",
+            data: result
+        })
+    })
+
+    // const file = req.file;
+
+    // console.log(file);
   
-    if (!file) {
-      return res.status(400).send('No file uploaded');
-    }
+    // if (!file) {
+    //   return res.status(400).send('No file uploaded');
+    // }
   
-    // Do something with the uploaded file
-    console.log('File uploaded:', file.filename);
-    res.send('File uploaded');
+    // // Do something with the uploaded file
+    // cloudinary.uploader.upload(image).then(result => {
+    //     console.log("result::::::::" + result);
+    // })
+
+    
+    // console.log('File uploaded:', file.filename);
+    // res.send('File uploaded');
 });
   
 

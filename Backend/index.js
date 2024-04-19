@@ -4,10 +4,8 @@ import cors from "cors";
 import { User } from "./model/userModel.js";
 import userRoute from "./routes/apiRoutes.js";
 
-
-
-const PORT = 5656;
-
+const PORT = 5656; 
+ 
 const app = express();
 app.use(cors());
 app.use(express.json());
