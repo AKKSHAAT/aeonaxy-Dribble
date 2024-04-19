@@ -1,32 +1,53 @@
 import React, { useState } from "react";
 import { Logo } from "../components/Logo";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import UploadWidget from "../components/UploadWidget";
+import axios from 'axios';
 
 // TODO: better location search
 
 export const WelcomePage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [localImgUrl, setLocalImageUrl] = useState('');
   const [location, setLoaction] = useState('');
 
   const [isReady, setIsReady] = useState(false);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedImage(reader.result);
-        setIsReady(location.trim() !== '' && reader.result !== null);
-      };
-      reader.readAsDataURL(file);
-    }
+    
+    setSelectedImage(file)
+    setLocalImageUrl(URL.createObjectURL(file));
+    // if (file) {
+    //   const reader = new FileReader();
+    //   reader.onloadend = () => {
+    //     setSelectedImage(reader.result);
+    //     console.log(reader.result)
+    //     setIsReady(location.trim() !== '' && reader.result !== null);
+    //   };
+    //   reader.readAsDataURL(file);
+    // }
   };
 
-  const takeNext = ()=>{
-    console.log("going next")
-  }
+
+  const takeNext = async () => {
+    const formData = new FormData();
+    formData.append('avatar', selectedImage);
+
+    console.log(formData);
+  
+    try {
+      const response = await axios.post('http://localhost:5656/user/upload-avatar', formData, 
+  
+    );
+  
+      console.log('Image uploaded successfully:', response.data);
+      // Redirect or do something else on success
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
+  };
 
   const handleLocation = (e)=> {
     const value = e.target.value;
@@ -35,6 +56,7 @@ export const WelcomePage = () => {
     setIsReady(value.trim() !== '' && selectedImage !== null);
   }
 
+  
   return (
     <>
       <div className="m-14">
@@ -57,9 +79,9 @@ export const WelcomePage = () => {
               {/* will renders icon or selected img */}
               <div className="mx-auto max-w-xs mb-8 md:mb-0">
                 <div className="text-slate-400 w-52 h-52 rounded-full flex items-center justify-center border-slate-200 border-4 mx-auto border-dashed">
-                  {selectedImage ? (
+                  {localImgUrl ? (
                     <img
-                      src={selectedImage}
+                      src={localImgUrl}
                       alt="Selected Avatar"
                       className="w-full h-full object-cover rounded-full"
                     />

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Logo } from "./Logo";
 import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,15 +50,19 @@ const NavBar = () => {
 
         {/* ---------------------right section----------------- */}
       <section className="flex justify-between mx-4 items-center ">
-          <input
-            id="search"
-            name="seaerch"
-            type="text"
-            autoComplete="search"
-            required
-            className="input-base mx-3  bg-inputBg-100 p-1 rounded-md "
-            placeholder="search"
-          />
+
+          <div  className="input-base mx-3 flex items-center text-gray-400 bg-inputBg-100 px-3 py-1 rounded-md ">
+            <FontAwesomeIcon icon={faMagnifyingGlass}/>
+              <input
+                id="search"
+                name="seaerch"
+                type="text"
+                autoComplete="search"
+                required
+                className="input-base mx-3 bg-inputBg-100 p-1 "
+                placeholder="search"
+              />
+          </div>
 
           <button className="text-slate-400 text-xl mx-3">
           <FontAwesomeIcon icon={faBriefcase} />

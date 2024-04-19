@@ -89,8 +89,8 @@ const Footer = () => {
       </div>
 
 
-      <div className="bg-gray-700">
-        <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-sm text-gray-300">
+      <div className="">
+        <div className="mx-auto py-4 px-4 sm:px-6 lg:px-8 text-sm">
           &copy; 2023 Your Company. All Rights Reserved.
         </div>
       </div>
