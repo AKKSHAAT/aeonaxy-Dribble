@@ -1,25 +1,54 @@
-import React from "react";
+import React, { useState } from 'react';
 import { Logo } from "./Logo";
-import { Link } from "react-router-dom";
-import { faSubway } from "@fortawesome/free-solid-svg-icons";
+import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const NavBar = () => {
-  return (
-    <nav className="border-b-2 border-slate-100 p-4 flex ">
-      <Logo />
-      <div className="flex justify-between w-full ">
-        <section className="flex justify-between mx-4 items-center">
-          <p className="mx-3 font-bold text-slate-400 text-sm">Insperation </p>
-          <p className="mx-3 font-bold text-slate-400 text-sm">Find Wrok </p>
-          <p className="mx-3 font-bold text-slate-400 text-sm">Learn Design</p>
-          <p className="mx-3 font-bold text-slate-400 text-sm">Go Pro</p>
-          <p className="mx-3 font-bold text-slate-400 text-sm">
-            Hier Designers
-          </p>
-        </section>
+const NavBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-        <section className="flex justify-between mx-4 items-center ">
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <div>
+      <nav className="border-b-2 border-slate-100 p-4 flex  ">
+
+        <div className="flex items-center ">
+          <button className="md:hidden mr-4" onClick={toggleMenu}>
+            <svg
+              className="h-6 w-6 fill-current"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fillRule="evenodd"
+                d="M21 18H3v-2h18v2zm0-5H3v-2h18v2zm0-7v2H3V6h18z"
+              />
+            </svg>
+          </button>
+          <Logo />
+        </div>
+
+        <div className='flex md:justify-between w-full justify-end'>
+
+
+      <div className="md:flex hidden justify-between mx-4 items-center">
+        <section
+          id="navbar-default"
+          className="md:flex flex-col md:flex-row justify-between items-center"
+        >
+          <p className="mx-3 font-medium text-slate-400 text-sm">Insperation</p>
+          <p className="mx-3 font-medium text-slate-400 text-sm">Find Work</p>
+          <p className="mx-3 font-medium text-slate-400 text-sm">Learn Design</p>
+          <p className="mx-3 font-medium text-slate-400 text-sm">Go Pro</p>
+          <p className="mx-3 font-medium text-slate-400 text-sm">Hire Designers</p>
+        </section>
+      </div>
+
+
+        {/* ---------------------right section----------------- */}
+      <section className="flex justify-between mx-4 items-center ">
           <input
             id="search"
             name="seaerch"
@@ -31,7 +60,7 @@ export const NavBar = () => {
           />
 
           <button className="text-slate-400 text-xl mx-3">
-            <FontAwesomeIcon icon={faSubway} />
+          <FontAwesomeIcon icon={faBriefcase} />
           </button>
 
           <img
@@ -45,7 +74,22 @@ export const NavBar = () => {
             Upload
           </button>
         </section>
+        </div>
+      </nav>
+
+
+    {/* -----------for hamburger menu--------------- */}
+      <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
+        <section className="flex flex-col mx-4 items-start gap-4">
+          <p className="mx-3 font-medium text-slate-400 text-sm ">Insperation</p>
+          <p className="mx-3 font-medium text-slate-400 text-sm">Find Work</p>
+          <p className="mx-3 font-medium text-slate-400 text-sm">Learn Design</p>
+          <p className="mx-3 font-medium text-slate-400 text-sm">Go Pro</p>
+          <p className="mx-3 font-medium text-slate-400 text-sm">Hire Designers</p>
+        </section>
       </div>
-    </nav>
+    </div>
   );
 };
+
+export default NavBar;
