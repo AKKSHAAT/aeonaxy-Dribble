@@ -3,6 +3,7 @@ import NavBar  from "../components/NavBar";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import Footer from "../components/Footer";
 
 
 
@@ -44,6 +45,8 @@ export const VerifyEmail = ({ emailAdress }) => {
           <span className=" text-dribblePink font-semibold"> Change it</span>
         </p>
       </section>
+
+      <Footer />
     </div>
   );
 };
