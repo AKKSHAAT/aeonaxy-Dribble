@@ -3,11 +3,14 @@ import { Logo } from "../components/Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
+
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { faWarning } from "@fortawesome/free-solid-svg-icons";
 
 
 export const WelcomePage = () => {
+  const [emailExists, setEmailExists] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
   const [localImgUrl, setLocalImageUrl] = useState('');
   const [location, setLoaction] = useState('');
@@ -47,7 +50,11 @@ export const WelcomePage = () => {
         console.log('User created successfully:', createUserResponse.data);
         if (createUserResponse.status === 200) {
           navigate("/what/");
-        } 
+        }
+        if(createUserResponse.status === 400) {
+          setEmailExists(true);
+        }
+
     } catch (error) {
         console.error('Error:', error);
     }
@@ -73,6 +80,11 @@ export const WelcomePage = () => {
           <h1 className="text-4xl mb-3 font-bold ">
             Welcome! Let's create your profile
           </h1>
+          <h1 className={` ${emailExists ? "block" : "hidden"} bg-red-400 text-center text-xl text-white rounded-xl p-2`}>
+  <FontAwesomeIcon icon={faWarning}/>
+  email already exists
+</h1>
+
           <p className="text-slate-600 mb-8">
             Let others get to know you better! You can do these later
           </p>

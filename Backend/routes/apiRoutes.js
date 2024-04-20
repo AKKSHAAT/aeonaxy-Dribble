@@ -33,6 +33,15 @@ router.post("/create-user", async (req, res)=> {
         }
 
         console.log(":::::::user::::" + user);
+
+        const emailExists = User.findOne({email:user.email});
+
+        if(emailExists) {
+            return res.status(400).json({
+                erroe: "email alredy exists"
+            })
+        }
+
         User.create({
             name: user.name,
             username: user.username,
@@ -102,12 +111,12 @@ router.post("/login", async (req, res) => {
     const user = await User.findOne({username: userName});
 
     if(!user){
-        res.status(403).json({
+        return res.status(403).json({
             error: "wrong email"
         })
     }
     if(user.password !== password) {
-        res.status(403).json({
+        return res.status(403).json({
             error: "wrong passowrd"
         })
     }
