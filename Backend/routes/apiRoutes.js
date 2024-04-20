@@ -157,25 +157,22 @@ router.get("/mail", async (req, res)=>{
 })
 
 
-router.get("/verify", async (req, res)=>{
-    const email = req.query;
+router.get("/verify", async (req, res) => {
+    const email = req.query.email;
 
-    const userVarified = User.findOneAndUpdate(
-        {email: email},
-        {isVerified: true}
-    )
+    const userVerified = await User.findOneAndUpdate(
+        { email: email },
+        { isVerified: true }
+    );
 
-    if(!userVarified) {
-        res.status(404).json({
-            success:false,
-            error: 'usernotFound',
-        })
-    } else {
-        res.status(200).json({
-            success:true,
-            error: 'usernotVarified',
-        })
+    if (!userVerified) {
+        return res.status(404).json({
+            success: false,
+            error: 'userNotFound',
+        });
     }
-})
+
+    res.redirect('http://yourfrontenddomain.com/home');
+});
 
 export default router;

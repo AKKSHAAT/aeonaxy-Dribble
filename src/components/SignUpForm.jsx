@@ -1,5 +1,5 @@
 import React, {useReducer} from "react";
-import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 
 const initialState = {

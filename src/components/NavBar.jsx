@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
+
 import { Logo } from "./Logo";
 import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-
+ 
 const NavBar = () => {
+  
   const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState("");
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  function handleSearch(e) {
+    if (e.key === 'Enter') {
+      const link = `https://dribbble.com/search/${search}`
+      window.location.href = link;
+    }
+  }
 
   return (
     <div>
@@ -57,7 +67,9 @@ const NavBar = () => {
                 id="search"
                 name="seaerch"
                 type="text"
+                onChange={(e)=>setSearch(e.target.value)}
                 autoComplete="search"
+                onKeyPress={handleSearch}
                 required
                 className="input-base mx-3 bg-inputBg-100 p-1 "
                 placeholder="search"
@@ -69,6 +81,7 @@ const NavBar = () => {
           </button>
 
           <img
+          alt='something'
             src={localStorage.getItem("imgUrl")}
             className="w-full h-full mx-3 h-9 object-cover rounded-full"
           />
