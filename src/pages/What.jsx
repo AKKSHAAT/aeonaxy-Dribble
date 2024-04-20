@@ -3,6 +3,7 @@ import { Logo } from "../components/Logo";
 
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { BackButton } from "../components/BackButton";
 
 const What = () => {
   const navigate = useNavigate();
@@ -41,8 +42,12 @@ const What = () => {
 
   return (
     <>
-    <div className="m-14 mb-0 ">
+    <div className="m-14 mb-0  flex gap-6 ">
         <Logo color={"#d94683"} />
+        <div className=" bg-gray-200 py-2 px-4 rounded-lg text-gray-500">
+
+        <BackButton destination="/welcome"/>
+        </div>
     </div>
       <div className="flex flex-col items-center h-screen ">
         <h1 className="text-4xl font-bold mt-0 mb-4">

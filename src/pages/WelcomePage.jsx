@@ -7,10 +7,11 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { faWarning } from "@fortawesome/free-solid-svg-icons";
+import { BackButton } from "../components/BackButton";
 
 
 export const WelcomePage = () => {
-  const [emailExists, setEmailExists] = useState(true);
+  const [emailExists, setEmailExists] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [localImgUrl, setLocalImageUrl] = useState('');
   const [location, setLoaction] = useState('');
@@ -71,8 +72,9 @@ export const WelcomePage = () => {
   
   return (
     <>
-      <div className="m-14">
+      <div className="m-14 ">
         <Logo color={"#d94683"} />
+        
       </div>
       {/* <div className='m-auto md:px-96 px-4 max-w-1/2'> */}
       <div className="m-auto px-4 max-w-1/2 text-center md:text-left">
