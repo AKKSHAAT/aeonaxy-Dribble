@@ -11,7 +11,8 @@ const userSchema = mongoose.Schema({
     password: { type: String},
     imgUrl: { type: String},
     location: { type: String},
-    theirWhat: { type: Array}
+    theirWhat: { type: Array},
+    isVerified: Boolean
 });
 
 

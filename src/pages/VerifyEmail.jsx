@@ -16,7 +16,7 @@ export const VerifyEmail = ({ emailAdress }) => {
       <section className="pt-12 px-4 text-center">
         <h1 className="text-4xl font-medium text-black ">
           {" "}
-          Please verift your email...{" "}
+          Please verify your email...{" "}
         </h1>
 
         <div className=" text-9xl text-zinc-400 mb-4">

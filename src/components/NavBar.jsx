@@ -69,8 +69,8 @@ const NavBar = () => {
           </button>
 
           <img
-            src=""
-            className="w-full h-full mx-3  object-cover rounded-full"
+            src={localStorage.getItem("imgUrl")}
+            className="w-full h-full mx-3 h-9 object-cover rounded-full"
           />
 
           <button

@@ -2,9 +2,11 @@ import express, { response } from "express";
 import {User} from "../model/userModel.js";
 import multer from 'multer';
 import path  from 'path';
+import jwt from 'jsonwebtoken';
 
 import cloudinary from '../utils/cloudinary.js';
-const image = '../uploads/1713558479561.jpg';
+
+import { Resend } from "resend";
 
 const router = express.Router();
 
@@ -91,6 +93,50 @@ router.post('/what', async (req, res)=>{
             messege: error
         });
     }
+})
+
+router.post("/login", async (req, res) => {
+
+    const {email, password} = req.body;
+
+    const user = await User.findOne({username: userName});
+
+    if(!user){
+        res.status(403).json({
+            error: "wrong email"
+        })
+    }
+    if(user.password !== password) {
+        res.status(403).json({
+            error: "wrong passowrd"
+        })
+    }
+
+    const token = jwt.sign(user, process.env.JWT_SECRET, {expiresIn: "1d"});
+
+    res.cookie("token", token, {
+        httpOnly: true
+    })
+
+
+})
+
+router.get("/mail", async (req, res)=>{
+    const resend = new Resend(process.env.RESEND_KEY);
+
+    const { data, error } = await resend.emails.send({
+        from: "onboarding@resend.dev",
+        to: ["akkshaat@gmail.com"],
+        subject: "Verify your email -Dribbble",
+        html: "<strong>it works!</strong>",
+      });
+    
+      if (error) {
+        return res.status(400).json({ error });
+      }
+    
+      res.status(200).json({ data });    
+
 })
 
 export default router;
