@@ -24,23 +24,23 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post("/create-user", async (req, res)=> {
+router.post("/create-user", async (req, res) => {
     try {
         const user = req.body;
 
-        if(!user.name || !user.username || !user.email || !user.password || !user.imgUrl || !user.location) {
+        if (!user.name || !user.username || !user.email || !user.password || !user.imgUrl || !user.location) {
             return res.status(400).send("enter all required fields");
         }
 
         console.log(":::::::user::::" + user);
 
-        const emailExists = User.findOne({email:user.email});
+        const emailExists = await User.findOne({ email: user.email });
 
-        if(emailExists) {
+        if (emailExists) {
             console.log(":::::::::email exist:::::::::" + emailExists);
             return res.status(400).json({
-                erroe: "email alredy exists"
-            })
+                error: "email already exists"
+            });
         }
 
         User.create({
@@ -51,13 +51,14 @@ router.post("/create-user", async (req, res)=> {
             imgUrl: user.imgUrl,
             location: user.location
         })
-        .then((userAdded)=>{
+        .then((userAdded) => {
             return res.status(200).send(userAdded);
-        })
+        });
     } catch (error) {
-        res.status(500).send({messege: error.messege});
-    } 
+        res.status(500).send({ message: error.message });
+    }
 });
+
 
 router.post('/upload-avatar', upload.single('avatar'), (req, res) => {
 

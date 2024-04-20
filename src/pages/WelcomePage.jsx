@@ -37,7 +37,7 @@ export const WelcomePage = () => {
         console.log("sending");
         setLoading(true);
         const avatarResponse = await axios.post('https://aeonaxy-dribble.onrender.com/user/upload-avatar', formData);
-        
+
         console.log('Image uploaded successfully:', avatarResponse.data.url);
 
         localStorage.setItem("imgUrl", avatarResponse.data.url);
@@ -51,14 +51,16 @@ export const WelcomePage = () => {
           imgUrl: localStorage.getItem("imgUrl"),
           location: localStorage.getItem("location")
         });
-        setLoading(false);  
+        setLoading(false);
+        
+        if (createUserResponse.status === 400) {
+          setEmailExists(true);
+          return;
+        }
+
         console.log('User created successfully:', createUserResponse.data);
         navigate("/what/");
         
-        if(createUserResponse.status === 400) {
-          setEmailExists(true);
-        }
-
     } catch (error) {
         console.error('Error:', error);
     }
