@@ -15,19 +15,21 @@ export const VerifyEmail = ({ emailAdress }) => {
   function handleMail() {
     const token = localStorage.getItem("email");
     axios.get("https://aeonaxy-dribble.onrender.com/user/mail", {
-      token: token
-    }).then(res=>{
-      if(res.status === 400) {
-        console.log("err");
-      } else {
-        console.log("sent");
+      params: {
+        token: token
       }
-    })
+    }).then(res => {
+      console.log("sent")
+    }).catch(err => {
+      console.log("err", err);
+    });
+    
   }
 
   useEffect(()=>{
     handleMail();
   }, []);
+
   return (
     <div>
       

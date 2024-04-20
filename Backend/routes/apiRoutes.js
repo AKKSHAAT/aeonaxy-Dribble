@@ -146,7 +146,7 @@ router.get("/mail", async (req, res)=>{
             <p>Get ready to explore the latest trends and creative designs on Dribbble.</p>
             <p>Don't miss out on the amazing artwork shared by talented designers from around the world.</p>
             <p>Start exploring now and unleash your creativity!</p>
-            <a href=http://localhost:5656/user/verify/?email=${token}/>Visit Dribbble</a>
+            <a href="https://aeonaxy-dribble.onrender.com/user/verify/?email=${token}">Visit Dribbble</a>
         `,
       });
     
@@ -174,7 +174,7 @@ router.get("/verify", async (req, res) => {
         });
     }
 
-    res.redirect('http://yourfrontenddomain.com/home');
+    res.redirect('https://main--relaxed-semifreddo-e33153.netlify.app/Verifed');
 });
 
 export default router;

@@ -52,7 +52,7 @@ export const WelcomePage = () => {
           location: localStorage.getItem("location")
         });
         setLoading(false);
-        
+          
         if (createUserResponse.status === 400) {
           setEmailExists(true);
           return;
