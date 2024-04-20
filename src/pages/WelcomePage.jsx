@@ -85,7 +85,7 @@ export const WelcomePage = () => {
       {loading ?(
         <div className=" text-center mx-auto px-auto"> 
           <Loading />
-          <p >the backend is hosted on render's free plan this might take a while</p>
+          <p ><FontAwesomeIcon icon={faWarning} size={"sm"} /> the backend is hosted on render's free plan this might take a while</p>
         </div>
       ) : (<></>)}
 
