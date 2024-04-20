@@ -91,7 +91,7 @@ const Footer = () => {
 
       <div className="">
         <div className="mx-auto py-4 px-4 sm:px-6 lg:px-8 text-sm">
-          &copy; 2023 Your Company. All Rights Reserved.
+          &copy; 2024 Dribbble. All Rights Reserved.
         </div>
       </div>
     </footer>

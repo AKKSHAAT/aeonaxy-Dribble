@@ -122,13 +122,21 @@ router.post("/login", async (req, res) => {
 })
 
 router.get("/mail", async (req, res)=>{
+    const{ token } = req.query;
     const resend = new Resend(process.env.RESEND_KEY);
 
     const { data, error } = await resend.emails.send({
         from: "onboarding@resend.dev",
-        to: ["akkshaat@gmail.com"],
+        to: [token],
         subject: "Verify your email -Dribbble",
-        html: "<strong>it works!</strong>",
+        html: `
+            <h1>Discover Your Next Design Inspiration on Dribbble</h1>
+            <p>Hi there,</p>
+            <p>Get ready to explore the latest trends and creative designs on Dribbble.</p>
+            <p>Don't miss out on the amazing artwork shared by talented designers from around the world.</p>
+            <p>Start exploring now and unleash your creativity!</p>
+            <a href=http://localhost:5656/user/verify/?email=${token}/>Visit Dribbble</a>
+        `,
       });
     
       if (error) {
@@ -137,6 +145,28 @@ router.get("/mail", async (req, res)=>{
     
       res.status(200).json({ data });    
 
+})
+
+
+router.get("/verify", async (req, res)=>{
+    const email = req.query;
+
+    const userVarified = User.findOneAndUpdate(
+        {email: email},
+        {isVerified: true}
+    )
+
+    if(!userVarified) {
+        res.status(404).json({
+            success:false,
+            error: 'usernotFound',
+        })
+    } else {
+        res.status(200).json({
+            success:true,
+            error: 'usernotVarified',
+        })
+    }
 })
 
 export default router;

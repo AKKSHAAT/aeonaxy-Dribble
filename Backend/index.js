@@ -4,7 +4,7 @@ import cors from "cors";
 import { User } from "./model/userModel.js";
 import userRoute from "./routes/apiRoutes.js";
 
-const PORT = 5656; 
+const PORT = process.env.PORT || 5656; 
  
 const app = express();
 app.use(cors());
@@ -16,7 +16,7 @@ app.listen(PORT, ()=>{
     console.log("Running at Port: " + PORT);
 })
 
-mongoose.connect("mongodb://0.0.0.0:27017/Dribbble")
+mongoose.connect(process.env.MONGO_URL)
     .then(()=>{
         console.log("Connected to DB");  
     })

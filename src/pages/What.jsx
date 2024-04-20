@@ -63,6 +63,15 @@ const What = () => {
                 : ""
             }`}
           >
+          <img
+          className= {` object-cover  ${
+              selectedOptions.includes("designer")
+                ? "relative bottom-20"
+                : ""
+            }`}
+          src={process.env.PUBLIC_URL + '/images/ShareWork.png'}
+          alt="someting"
+        />
             <p className="mt-2 mb-4 font-bold">
               I am a designer looking for work
             </p>
@@ -81,6 +90,15 @@ const What = () => {
               selectedOptions.includes("hire") ? "ring-2 ring-dribblePink" : ""
             }`}
           >
+            <img
+              className={` object-cover  ${
+              selectedOptions.includes("hire")
+                ? "relative bottom-20"
+                : ""
+            }`}
+              src={process.env.PUBLIC_URL + '/images/hire.png'}
+              alt="someting"
+            />
             <p className="mt-2 mb-4 font-bold">
               I am looking to hire a designer
             </p>
@@ -101,6 +119,15 @@ const What = () => {
                 : ""
             }`}
           >
+            <img
+              className={`  object-cover ${
+              selectedOptions.includes("inspiration")
+                ? "relative bottom-20"
+                : ""
+            }`}
+              src={process.env.PUBLIC_URL + '/images/inspiration.png'}
+              alt="someting"
+            />
             <p className="mt-2 mb-4 font-bold">
               I am looking for design inspiration
             </p>
