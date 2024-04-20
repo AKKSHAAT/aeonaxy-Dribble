@@ -141,7 +141,7 @@ router.get("/mail", async (req, res)=>{
         to: [token],
         subject: "Verify your email -Dribbble",
         html: `
-            <h1>Discover Your Next Design Inspiration on Dribbble</h1>
+            <h1>ThankYou! for joining Dribbble</h1>
             <p>Hi there,</p>
             <p>Get ready to explore the latest trends and creative designs on Dribbble.</p>
             <p>Don't miss out on the amazing artwork shared by talented designers from around the world.</p>
