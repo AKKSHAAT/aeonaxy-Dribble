@@ -57,7 +57,7 @@ export const VerifyEmail = ({ emailAdress }) => {
         <p className="text-zinc-400 mb-2 ">
           Didn't recive the email? Check your Spam folder. It may have been
           caught by a filter. if you still don't see it you can
-          <span className=" text-dribblePink font-semibold"> resend the confirmation email</span>
+          <span onClick={handleMail} className=" text-dribblePink font-semibold"> resend the confirmation email</span>
         </p>
         <p className="text-zinc-400 mb-2 ">
           Wrong email address?  
