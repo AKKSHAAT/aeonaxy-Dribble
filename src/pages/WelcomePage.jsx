@@ -12,7 +12,7 @@ import { Loading } from "../components/Loading";
 
 
 export const WelcomePage = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [emailExists, setEmailExists] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [localImgUrl, setLocalImageUrl] = useState('');
@@ -80,21 +80,32 @@ export const WelcomePage = () => {
       <div className="m-14 ">
         <Logo color={"#d94683"} />
         
+      
+
+      {loading ?(
+        <div className=" text-center mx-auto px-auto"> 
+          <Loading />
+          <p >the backend is hosted on render's free plan this might take a while</p>
+        </div>
+      ) : (<></>)}
+
+      
       </div>
 
       {/* <div className='m-auto md:px-96 px-4 max-w-1/2'> */}
       <div className="m-auto px-4 max-w-1/2 text-center md:text-left">
-      {loading ?(
+      {/* {loading ?(
         <div className="mx-96"> 
           <Loading />
           <p>the backend is hosted on render's free plan this might take a while</p>
         </div>
-      ) : (<div></div>)}
+      ) : (<div></div>)} */}
         <div className="max-w-2xl mx-auto">
         
           <h1 className="text-4xl mb-3 font-bold ">
             Welcome! Let's create your profile
           </h1>
+          
           <h1 className={` ${emailExists ? "block" : "hidden"} bg-red-400 text-center text-xl text-white rounded-xl p-2`}>
   <FontAwesomeIcon icon={faWarning}/>
   email already exists
@@ -143,6 +154,7 @@ export const WelcomePage = () => {
                 className="hidden"
                 onChange={handleImageChange}
               />
+              
             </label>
           </div>
         </div>
