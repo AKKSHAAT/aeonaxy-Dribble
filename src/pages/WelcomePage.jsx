@@ -32,14 +32,14 @@ export const WelcomePage = () => {
     formData.append('avatar', selectedImage);
 
     try {
-        const avatarResponse = await axios.post('http://localhost:5656/user/upload-avatar', formData);
+        const avatarResponse = await axios.post('https://aeonaxy-dribble.onrender.com/user/upload-avatar', formData);
 
         console.log('Image uploaded successfully:', avatarResponse.data.url);
 
         localStorage.setItem("imgUrl", avatarResponse.data.url);
         localStorage.setItem("location", location);
 
-        const createUserResponse = await axios.post('http://localhost:5656/user/create-user', {
+        const createUserResponse = await axios.post('https://aeonaxy-dribble.onrender.com/user/create-user', {
           name: localStorage.getItem("name"),
           username: localStorage.getItem("username"),
           email: localStorage.getItem("email"),
