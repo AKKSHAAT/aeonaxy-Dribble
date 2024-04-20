@@ -7,10 +7,12 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { faWarning } from "@fortawesome/free-solid-svg-icons";
+import { Loading } from "../components/Loading";
 
 
 
 export const WelcomePage = () => {
+  const [loading, setLoading] = useState(false);
   const [emailExists, setEmailExists] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [localImgUrl, setLocalImageUrl] = useState('');
@@ -32,8 +34,10 @@ export const WelcomePage = () => {
     formData.append('avatar', selectedImage);
 
     try {
+        console.log("sending");
+        setLoading(true);
         const avatarResponse = await axios.post('https://aeonaxy-dribble.onrender.com/user/upload-avatar', formData);
-
+        
         console.log('Image uploaded successfully:', avatarResponse.data.url);
 
         localStorage.setItem("imgUrl", avatarResponse.data.url);
@@ -47,7 +51,7 @@ export const WelcomePage = () => {
           imgUrl: localStorage.getItem("imgUrl"),
           location: localStorage.getItem("location")
         });
-
+        setLoading(false);  
         console.log('User created successfully:', createUserResponse.data);
         navigate("/what/");
         
@@ -75,9 +79,17 @@ export const WelcomePage = () => {
         <Logo color={"#d94683"} />
         
       </div>
+
       {/* <div className='m-auto md:px-96 px-4 max-w-1/2'> */}
       <div className="m-auto px-4 max-w-1/2 text-center md:text-left">
+      {loading ?(
+        <div className="mx-96"> 
+          <Loading />
+
+        </div>
+      ) : (<div></div>)}
         <div className="max-w-2xl mx-auto">
+        
           <h1 className="text-4xl mb-3 font-bold ">
             Welcome! Let's create your profile
           </h1>

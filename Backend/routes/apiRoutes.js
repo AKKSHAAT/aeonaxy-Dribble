@@ -37,6 +37,7 @@ router.post("/create-user", async (req, res)=> {
         const emailExists = User.findOne({email:user.email});
 
         if(emailExists) {
+            console.log(":::::::::email exist:::::::::" + emailExists);
             return res.status(400).json({
                 erroe: "email alredy exists"
             })
