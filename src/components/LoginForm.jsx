@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 
 export const LoginForm = () => {
-  const [wrongCreds, setWrongCreds] = useState(true);
+  const [wrongCreds, setWrongCreds] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
