@@ -49,11 +49,11 @@ const NavBar = () => {
           id="navbar-default"
           className="md:flex flex-col md:flex-row justify-between items-center"
         >
-          <p className="mx-3 font-medium text-slate-400 text-sm">Insperation</p>
-          <p className="mx-3 font-medium text-slate-400 text-sm">Find Work</p>
-          <p className="mx-3 font-medium text-slate-400 text-sm">Learn Design</p>
-          <p className="mx-3 font-medium text-slate-400 text-sm">Go Pro</p>
-          <p className="mx-3 font-medium text-slate-400 text-sm">Hire Designers</p>
+          <a href="https://dribbble.com/shots/popular" className="mx-3 font-medium text-slate-400 text-sm">Insperation</a>
+          <a  href='https://dribbble.com/jobs' className="mx-3 font-medium text-slate-400 text-sm">Find Work</a>
+          <a href="https://dribbble.com/product-design" className="mx-3 font-medium text-slate-400 text-sm">Learn Design</a>
+          <a href='https://dribbble.com/pro' className="mx-3 font-medium text-slate-400 text-sm">Go Pro</a>
+          <a href='https://dribbble.com/hiring' className="mx-3 font-medium text-slate-400 text-sm">Hire Designers</a>
         </section>
       </div>
 
