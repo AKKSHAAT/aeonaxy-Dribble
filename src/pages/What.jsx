@@ -4,7 +4,6 @@ import { Logo } from "../components/Logo";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-// TODO:add imgsss
 const What = () => {
   const navigate = useNavigate();
 

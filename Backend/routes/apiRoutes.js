@@ -60,7 +60,7 @@ router.post('/upload-avatar', upload.single('avatar'), (req, res) => {
             })
         }
 
-        //TODO:fetch user email and add this to profile img url
+        
         console.log(result.secure_url);
         res.status(200).json({
             success: true,

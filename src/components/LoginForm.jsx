@@ -1,6 +1,6 @@
 import React, {useState}from "react";
 
-// TODO:add check box validation
+
 
 export const LoginForm = () => {
 

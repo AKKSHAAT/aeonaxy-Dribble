@@ -6,7 +6,6 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-// TODO: better location search
 
 export const WelcomePage = () => {
   const [selectedImage, setSelectedImage] = useState(null);

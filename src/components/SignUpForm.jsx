@@ -2,11 +2,6 @@ import React, {useReducer} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
-
-// TODO:add check box validation
-// TODO:add username check w debouncing
-
 const initialState = {
   name: '',
   email: '',
