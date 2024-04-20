@@ -1,13 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import NavBar  from "../components/NavBar";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../components/Footer";
-import axios from "axios";
-
-
-
 
 export const VerifiedEmail = ({ emailAdress }) => {
 
