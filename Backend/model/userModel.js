@@ -8,10 +8,10 @@ const userSchema = mongoose.Schema({
         required: true,
         unique: true,
     },
-    password: { type: String, required: true },
-    imgUrl: { type: String,},
-    location: { type: String,},
-    theirWhat: { type: Array,}
+    password: { type: String},
+    imgUrl: { type: String},
+    location: { type: String},
+    theirWhat: { type: Array}
 });
 
 

@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
       cb(null, 'uploads');
     },
     filename: (req, file, cb) => {
-      console.log(file);
+      console.log("Uploading..");
       cb(null, Date.now() + path.extname(file.originalname) );
     }
 });
@@ -25,22 +25,25 @@ const upload = multer({ storage: storage });
 router.post("/create-user", async (req, res)=> {
     try {
         const user = req.body;
-        console.log(user);
 
-        if(!user.name || !user.username || !user.email || !user.password) {
+        if(!user.name || !user.username || !user.email || !user.password || !user.imgUrl || !user.location) {
             return res.status(400).send("enter all required fields");
         }
+
+        console.log(":::::::user::::" + user);
         User.create({
             name: user.name,
             username: user.username,
             email: user.email,
-            password: user.password
+            password: user.password,
+            imgUrl: user.imgUrl,
+            location: user.location
         })
         .then((userAdded)=>{
             return res.status(200).send(userAdded);
         })
     } catch (error) {
-        res.status(500).send(error.messege);
+        res.status(500).send({messege: error.messege});
     } 
 });
 
@@ -59,28 +62,35 @@ router.post('/upload-avatar', upload.single('avatar'), (req, res) => {
         console.log(result.secure_url);
         res.status(200).json({
             success: true,
-            messege: "Uploaded!",
+            url: result.secure_url,
             data: result
         })
     })
-
-    // const file = req.file;
-
-    // console.log(file);
-  
-    // if (!file) {
-    //   return res.status(400).send('No file uploaded');
-    // }
-  
-    // // Do something with the uploaded file
-    // cloudinary.uploader.upload(image).then(result => {
-    //     console.log("result::::::::" + result);
-    // })
-
-    
-    // console.log('File uploaded:', file.filename);
-    // res.send('File uploaded');
 });
-  
+
+
+router.post('/what', async (req, res)=>{
+    try {
+        
+        const selection = req.body.selectedOptions;
+        const userEmail = req.body.email;
+    
+        const userWhatAdded = await User.findOneAndUpdate(
+            {email: userEmail},
+            {theirWhat: selection}
+        )
+    
+        if(userWhatAdded){
+            res.status(200).json({
+                success: true
+            });
+        }
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            messege: error
+        });
+    }
+})
 
 export default router;

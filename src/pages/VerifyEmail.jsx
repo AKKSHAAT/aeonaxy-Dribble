@@ -30,7 +30,7 @@ export const VerifyEmail = ({ emailAdress }) => {
           Please Verify your email address. We've sent a confirmation email to:
         </p>
         <p className="font-bold mb-2">
-          {emailAdress || "EmailNotFound@email.com"}
+          {localStorage.getItem("email")}
         </p>
         <p className="text-zinc-400 mb-2 ">
           Click the confirmation link in that email to begin using Dribble

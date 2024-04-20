@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Logo } from "../components/Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
-import UploadWidget from "../components/UploadWidget";
+
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 // TODO: better location search
@@ -11,6 +12,7 @@ export const WelcomePage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [localImgUrl, setLocalImageUrl] = useState('');
   const [location, setLoaction] = useState('');
+  const navigate = useNavigate();
 
   const [isReady, setIsReady] = useState(false);
 
@@ -18,16 +20,7 @@ export const WelcomePage = () => {
     const file = e.target.files[0];
     
     setSelectedImage(file)
-    setLocalImageUrl(URL.createObjectURL(file));
-    // if (file) {
-    //   const reader = new FileReader();
-    //   reader.onloadend = () => {
-    //     setSelectedImage(reader.result);
-    //     console.log(reader.result)
-    //     setIsReady(location.trim() !== '' && reader.result !== null);
-    //   };
-    //   reader.readAsDataURL(file);
-    // }
+    if(file) setLocalImageUrl(URL.createObjectURL(file));
   };
 
 
@@ -35,19 +28,32 @@ export const WelcomePage = () => {
     const formData = new FormData();
     formData.append('avatar', selectedImage);
 
-    console.log(formData);
-  
     try {
-      const response = await axios.post('http://localhost:5656/user/upload-avatar', formData, 
-  
-    );
-  
-      console.log('Image uploaded successfully:', response.data);
-      // Redirect or do something else on success
+        const avatarResponse = await axios.post('http://localhost:5656/user/upload-avatar', formData);
+
+        console.log('Image uploaded successfully:', avatarResponse.data.url);
+
+        localStorage.setItem("imgUrl", avatarResponse.data.url);
+        localStorage.setItem("location", location);
+
+        const createUserResponse = await axios.post('http://localhost:5656/user/create-user', {
+          name: localStorage.getItem("name"),
+          username: localStorage.getItem("username"),
+          email: localStorage.getItem("email"),
+          password: localStorage.getItem("password"),
+          imgUrl: localStorage.getItem("imgUrl"),
+          location: localStorage.getItem("location")
+        });
+
+        console.log('User created successfully:', createUserResponse.data);
+        if (createUserResponse.status === 200) {
+          navigate("/what/");
+        } 
     } catch (error) {
-      console.error('Error uploading image:', error);
+        console.error('Error:', error);
     }
-  };
+};
+
 
   const handleLocation = (e)=> {
     const value = e.target.value;

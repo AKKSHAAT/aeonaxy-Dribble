@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Logo } from "../components/Logo";
 
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 // TODO:add imgsss
 const What = () => {
+  const navigate = useNavigate();
+
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isReady, setIsReady] = useState(false);
 
@@ -23,7 +27,17 @@ const What = () => {
   }, [selectedOptions]);
 
   const takeNext = () => {
-    console.log("going next");
+    try{
+      const addWhat = axios.post("http://localhost:5656/user/what", {
+        selectedOptions: selectedOptions,
+        email: localStorage.getItem("email")
+      });
+        console.log(200);
+        navigate("/Verify/"); 
+      }
+     catch(err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -109,11 +123,11 @@ const What = () => {
         </p>
 
         <button
+        onClick={takeNext}
           className={`bg-dribblePink px-20 py-2 rounded-lg text-white font-bold ${
             !isReady && "opacity-50"
           }`}
           disabled={!isReady}
-          onClick={takeNext}
         >
           Next
         </button>

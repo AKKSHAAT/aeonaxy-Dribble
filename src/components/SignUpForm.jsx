@@ -1,4 +1,8 @@
 import React, {useReducer} from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+
 
 // TODO:add check box validation
 // TODO:add username check w debouncing
@@ -22,12 +26,25 @@ const reducer = (state, action) => {
       return { ...state, password: action.payload };
     default:
       return state;
-  }
+    }
 };
+
+
 
 export const SignUpForm = () => {
   
+  const navigate = useNavigate();
   const [state, dispatch] = useReducer(reducer, initialState);
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+      localStorage.setItem("name", state.name);
+      localStorage.setItem("email", state.email);
+      localStorage.setItem("username", state.username);
+      localStorage.setItem("password", state.password);  
+      navigate("/welcome/");
+  };
 
   const handleChange = (e) => {
     console.log(state.name)
@@ -131,7 +148,7 @@ export const SignUpForm = () => {
             </div>
           </div>
           <button
-            type="submit"
+            onClick={handleSubmit}
             className="group relative flex w-1/2 justify-center py-2 px-4 border border-transparent text-sm font-bold rounded-md text-white bg-dribblePink focus:outline-none focus:ring-2 focus:ring-offset-2"
           >
             Create Account
