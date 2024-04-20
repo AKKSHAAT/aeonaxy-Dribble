@@ -4,7 +4,6 @@ import { WelcomePage } from './pages/WelcomePage';
 import {VerifyEmail} from './pages/VerifyEmail';
 import What from './pages/What';
 
-import UploadWidget from './components/UploadWidget';
 
 
 function App() {
