@@ -28,7 +28,7 @@ const What = () => {
 
   const takeNext = () => {
     try{
-      const addWhat = axios.post("https://aeonaxy-dribble.onrender.com/user/what", {
+      axios.post("https://aeonaxy-dribble.onrender.com/user/what", {
         selectedOptions: selectedOptions,
         email: localStorage.getItem("email")
       });

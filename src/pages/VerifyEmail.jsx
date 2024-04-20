@@ -1,14 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavBar  from "../components/NavBar";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../components/Footer";
+import axios from "axios";
 
 
 
 
 export const VerifyEmail = ({ emailAdress }) => {
+
+
+  function handleMail() {
+    const token = localStorage.getItem("email");
+    axios.get("https://aeonaxy-dribble.onrender.com/user/mail", {
+      token: token
+    }).then(res=>{
+      if(res.status === 400) {
+        console.log("err");
+      } else {
+        console.log("sent");
+      }
+    })
+  }
+
+  useEffect(()=>{
+    handleMail();
+  }, []);
   return (
     <div>
       
