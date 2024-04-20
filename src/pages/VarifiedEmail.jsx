@@ -14,7 +14,7 @@ export const VerifiedEmail = ({ emailAdress }) => {
       <section className="pt-12 px-4 text-center">
         <h1 className="text-4xl font-medium text-black ">
           {" "}
-          Please verify your email...{" "}
+          You have been verified!!!! 🥳{" "}
         </h1>
 
         <div className=" text-9xl text-pink-400 mb-4">
@@ -25,7 +25,7 @@ export const VerifiedEmail = ({ emailAdress }) => {
         </div>
 
         <p className="text-zinc-400 mb-2">
-          You have been verified :
+          
         </p>
         <p className="font-bold mb-2">
           {localStorage.getItem("email")}

@@ -12,7 +12,7 @@ import { Loading } from "../components/Loading";
 
 
 export const WelcomePage = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [emailExists, setEmailExists] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [localImgUrl, setLocalImageUrl] = useState('');
