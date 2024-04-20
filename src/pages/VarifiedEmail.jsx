@@ -21,7 +21,7 @@ export const VerifiedEmail = ({ emailAdress }) => {
           Please verify your email...{" "}
         </h1>
 
-        <div className=" text-9xl bg-pink-400 mb-4">
+        <div className=" text-9xl text-pink-400 mb-4">
           <div className="relative left-36 bottom-20 inline-flex p-1 text-xl text-white bg-pink-400 rounded-full border-4 border-white border-solid">
             <FontAwesomeIcon icon={faCheck} />
           </div>
