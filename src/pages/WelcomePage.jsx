@@ -87,7 +87,7 @@ export const WelcomePage = () => {
       {loading ?(
         <div className="mx-96"> 
           <Loading />
-
+          <p>the backend is hosted on render's free plan this might take a while</p>
         </div>
       ) : (<div></div>)}
         <div className="max-w-2xl mx-auto">
