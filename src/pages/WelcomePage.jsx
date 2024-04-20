@@ -49,9 +49,8 @@ export const WelcomePage = () => {
         });
 
         console.log('User created successfully:', createUserResponse.data);
-        if (createUserResponse.status === 200) {
-          navigate("/what/");
-        }
+        navigate("/what/");
+        
         if(createUserResponse.status === 400) {
           setEmailExists(true);
         }
